@@ -2511,7 +2511,7 @@ t('reserve connection', async() => {
     reserved`select 3 as x`.then(([{ x }]) => ({ time: Date.now(), x }))
   ])
 
-  if (xs[1].time - xs[2].time > 500)
+  if (xs[1].time - xs[2].time < 500)
     throw new Error('Wrong time')
 
   return [

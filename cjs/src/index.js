@@ -216,7 +216,10 @@ function Postgres(a, b) {
     c.reserved.release = true
 
     const sql = Sql(handler)
-    sql.release = () => onopen(c)
+    sql.release = () => {
+      c.reserved = null
+      onopen(c)
+    }
 
     return sql
 
